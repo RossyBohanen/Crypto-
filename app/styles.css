@@ -1,0 +1,28 @@
+/* Virtual Crypto Slots — mobile-first (spec: responsive, one-handed, thumb-reach).
+   No build step. Dark casino theme, large touch targets, uncluttered. */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #12081f; color: #f5efff; }
+.app { max-width: 560px; margin: 0 auto; padding: 12px 12px 96px; }
+h1 { margin: 4px 0; font-size: 1.6rem; }
+.tagline { margin: 0 0 12px; color: #c9b8ff; font-size: .9rem; }
+.wallet, .balances, .market, .fairness, .payouts { background: #1e1033; border: 1px solid #3d2a6b; border-radius: 12px; padding: 12px; margin: 12px 0; }
+.hint { color: #b9a8e0; font-size: .85rem; }
+.balances { display: flex; gap: 8px; }
+.balances div { flex: 1; text-align: center; }
+.balances span { display: block; font-size: .8rem; color: #b9a8e0; }
+.balances strong { font-size: 1.15rem; }
+.reels { display: flex; gap: 10px; justify-content: center; margin: 16px 0 8px; }
+.reel { width: 30%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: clamp(3rem, 16vw, 5rem); background: #fff; color: #111; border-radius: 14px; border: 4px solid #ffd700; }
+.reel.spinning { animation: wobble .12s infinite alternate; }
+@keyframes wobble { from { transform: translateY(-3px); } to { transform: translateY(3px); } }
+.result { text-align: center; min-height: 1.4em; font-weight: 600; }
+.controls { position: sticky; bottom: 0; background: #12081f; padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; }
+button, select { font-size: 1rem; padding: 10px 14px; border-radius: 10px; border: 1px solid #6b4fc4; background: #2a1850; color: #fff; min-height: 44px; }
+button:active { background: #3d2a6b; }
+.spin { background: #ffd700; color: #111; font-weight: 800; font-size: 1.25rem; padding: 12px 28px; border-color: #ffd700; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+td, th { padding: 4px 6px; border-bottom: 1px solid #3d2a6b; text-align: left; }
+.log { font-family: ui-monospace, monospace; font-size: .8rem; word-break: break-all; white-space: pre-wrap; background: #0d0618; padding: 8px; border-radius: 8px; max-height: 180px; overflow: auto; }
+.market-item, .inv-item { display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #3d2a6b; }
+a { color: #ffd700; }
+@media (min-width: 600px) { .app { padding-bottom: 24px; } .controls { position: static; } }

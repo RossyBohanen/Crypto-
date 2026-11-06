@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Virtual Crypto Slots — NEAR Hackathon Demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <h1>🎰 Virtual Crypto Slots</h1>
+    <p class="tagline">NEAR Hackathon · Track 09 — Games With Real Economies · <strong>Demo only — play tokens, no real money</strong></p>
+  </header>
+
+  <section class="wallet" aria-label="Wallet">
+    <span id="walletStatus">Not connected — demo mode</span>
+    <button id="connectBtn" type="button">Connect demo wallet</button>
+    <span class="hint">Demo wallet only (demo-player.testnet). No seed phrase, no keys. Real play would use NEAR Wallet Selector / social login.</span>
+  </section>
+
+  <section class="balances" aria-label="Balances">
+    <div><span>Balance</span><strong id="balance">1,000 CHIPS</strong></div>
+    <div><span>Bet</span><strong id="betDisplay">10 CHIPS</strong></div>
+    <div><span>Last win</span><strong id="lastWin">—</strong></div>
+  </section>
+
+  <section class="reels" aria-label="Slot reels">
+    <div class="reel" id="reel0">🍒</div>
+    <div class="reel" id="reel1">🍒</div>
+    <div class="reel" id="reel2">🍒</div>
+  </section>
+  <p id="resultLine" class="result" role="status">Place a bet and spin. Your first 1,000 CHIPS are on the house — play tokens only.</p>
+
+  <section class="controls" aria-label="Controls">
+    <label>Bet
+      <select id="betSelect">
+        <option value="1">1</option><option value="5">5</option>
+        <option value="10" selected>10</option><option value="25">25</option>
+        <option value="50">50</option><option value="100">100</option>
+      </select> CHIPS
+    </label>
+    <button id="maxBetBtn" type="button">Max Bet (100)</button>
+    <button id="spinBtn" type="button" class="spin">SPIN</button>
+    <button id="autoBtn" type="button" aria-pressed="false">Autoplay: off</button>
+    <button id="soundBtn" type="button" aria-pressed="false">Sound: off</button>
+  </section>
+  <p class="hint">Onboarding: 1) pick a bet, 2) press SPIN, 3) wins are paid from the payout table below, 4) rare spins drop a collectible you own and can sell to Mara. Autoplay pauses automatically if you leave the tab.</p>
+
+  <details class="payouts" open>
+    <summary>Payout table — RTP 96.30% (analytic: 208 / 216)</summary>
+    <table>
+      <tr><th>Result</th><th>Pays (× bet)</th></tr>
+      <tr><td>7️⃣ 7️⃣ 7️⃣ — jackpot</td><td>90× + Golden Reel</td></tr>
+      <tr><td>💎 💎 💎</td><td>40×</td></tr>
+      <tr><td>⭐ ⭐ ⭐</td><td>22×</td></tr>
+      <tr><td>🔔 🔔 🔔</td><td>14×</td></tr>
+      <tr><td>🍋 🍋 🍋</td><td>7×</td></tr>
+      <tr><td>🍒 🍒 🍒</td><td>5×</td></tr>
+      <tr><td>Exactly two 7️⃣</td><td>1×</td></tr>
+      <tr><td>Exactly two 💎</td><td>1×</td></tr>
+      <tr><td>Anything else</td><td>0×</td></tr>
+    </table>
+    <p>Collectible drop: ~1% of spins (plus a guaranteed Golden Reel on a jackpot). Collectibles have no cash value in this demo.</p>
+  </details>
+
+  <section class="market" aria-label="Player-owned market">
+    <h2>🛒 Mara's Market — player-owned economy</h2>
+    <p>Mara is an NPC merchant with her own wallet and inventory. She sets prices from her stock and recent demand — flood her with an item and it gets cheap. Sell a collectible to her, or keep it: it's yours.</p>
+    <div id="marketList"></div>
+    <button id="fastForwardBtn" type="button">Fast-forward a week of trading</button>
+    <p id="marketLog" class="log" role="status"></p>
+    <h3>Your collectibles</h3>
+    <div id="inventory"></div>
+  </section>
+
+  <section class="fairness" aria-label="Provably fair">
+    <h2>🔍 Provably fair — verify any spin</h2>
+    <p>Demo randomness is commit-reveal (commitment = SHA-256(reveal), outcome = SHA-256(commitment + reveal)). Production uses Chainlink VRF with a cryptographic proof verified on-chain — never a block hash alone. <a href="../docs/FAIRNESS.md">How fairness works</a></p>
+    <div id="auditLog" class="log"></div>
+    <button id="verifyBtn" type="button">Verify last spin</button>
+    <span id="verifyResult" role="status"></span>
+  </section>
+
+  <footer>
+    <p>Virtual Crypto Slots by Sidney Bohanen, Good Lyfe Consulting. B2B slot engine demo for licensed operators — the engine is not a licence, and this demo is not a casino, not a token sale, and not legal advice. Operators need their own gambling licence, KYC/AML, and geo-blocking. See <a href="../README.md">README</a>.</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
